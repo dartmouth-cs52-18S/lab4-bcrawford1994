@@ -6,8 +6,8 @@ import { Provider, connect } from 'react-redux';
 import thunk from 'redux-thunk';
 
 // keys for actiontypes
-const ROOT_URL = 'https://lab5-bobby.herokuapp.com/';
-const API_KEY = '?key=robert_crawford';
+const ROOT_URL = 'https://lab5-bobby.herokuapp.com/api';
+// const API_KEY = '?key=robert_crawford';
 
 export const ActionTypes = {
   FETCH_POSTS: 'FETCH_POSTS',
@@ -19,7 +19,7 @@ export const ActionTypes = {
 
 export function fetchPosts() {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/posts${API_KEY}`).then((response) => {
+    axios.get(`${ROOT_URL}/posts`).then((response) => {
       dispatch({ type: ActionTypes.FETCH_POSTS, payload: response.data });
     }).catch((error) => {
       console.log('error fetching posts');
@@ -30,7 +30,7 @@ export function fetchPosts() {
 export function createPost(post, history) {
   return (dispatch) => {
     const fields = { title: '', contents: '', tags: '' };
-    axios.post(`${ROOT_URL}/posts/${API_KEY}`, post).then((response) => {
+    axios.post(`${ROOT_URL}/posts/`, post).then((response) => {
       history.push('/');
       fetchPosts();
       dispatch({ type: ActionTypes.CREATE_POST, payload: response.data });
@@ -43,7 +43,7 @@ export function createPost(post, history) {
 export function updatePost(post, id, history) {
   return (dispatch) => {
     const fields = { title: '', contents: '', tags: '' };
-    axios.put(`${ROOT_URL}/posts/${id}${API_KEY}`, post).then((response) => {
+    axios.put(`${ROOT_URL}/posts/${id}`, post).then((response) => {
       history.push('/');
       dispatch({ type: ActionTypes.UPDATE_POST, payload: response.data });
     }).catch((error) => {
@@ -54,7 +54,7 @@ export function updatePost(post, id, history) {
 
 export function fetchPost(id) {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/posts/${id}${API_KEY}`).then((response) => {
+    axios.get(`${ROOT_URL}/posts/${id}`).then((response) => {
       dispatch({ type: ActionTypes.FETCH_POST, payload: response.data });
     }).catch((error) => {
       console.log('error fetching post');
@@ -64,7 +64,7 @@ export function fetchPost(id) {
 
 export function deletePost(id, history) {
   return (dispatch) => {
-    axios.delete(`${ROOT_URL}/posts/${id}${API_KEY}`).then((response) => {
+    axios.delete(`${ROOT_URL}/posts/${id}`).then((response) => {
       history.push('/');
       dispatch({ type: ActionTypes.DELETE_POST, payload: response.data });
     }).catch((error) => {
