@@ -6,7 +6,7 @@ import { Provider, connect } from 'react-redux';
 import thunk from 'redux-thunk';
 
 // keys for actiontypes
-const ROOT_URL = 'http://localhost:9090/api';
+const ROOT_URL = 'https://lab5-bobby.herokuapp.com/';
 const API_KEY = '?key=robert_crawford';
 
 export const ActionTypes = {
