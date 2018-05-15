@@ -6,6 +6,9 @@ import NavBar from '../components/navbar';
 import Posts from '../containers/posts';
 import NewPost from '../containers/newpost';
 import Post from '../containers/post';
+import SignIn from '../containers/sign-in';
+import SignUp from '../containers/sign-up';
+import RequireAuth from '../containers/requireAuth';
 import '../style.scss';
 
 const App = (props) => {
@@ -15,8 +18,10 @@ const App = (props) => {
         <NavBar />
         <Switch>
           <Route exact path="/" component={Posts} />
-          <Route path="/posts/new" component={NewPost} />
+          <Route path="/posts/new" component={RequireAuth(NewPost)} />
           <Route path="/posts/:postID" component={Post} />
+          <Route path="/signin" component={SignIn} />
+          <Route path="/signup" component={SignUp} />
           <Route render={() => (<div>post not found </div>)} />
         </Switch>
       </div>

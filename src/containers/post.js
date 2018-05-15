@@ -66,6 +66,7 @@ class Post extends Component {
           <div className="full-post-card">
             <div className="post-title">
               {this.props.post.title}
+              {this.props.post.author}
             </div>
             <div className="post-content">
               {this.props.post.content}
